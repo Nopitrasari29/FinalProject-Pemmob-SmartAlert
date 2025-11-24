@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">fppemmob-smartalertapp</string>
+
+    <string name="nav_home">Beranda</string>
+    <string name="nav_contacts">Kontak</string>
+    <string name="nav_settings">Pengaturan</string>
+
+    <string name="text_home">Status Sistem: SIAGA</string>
+    <string name="text_contacts">Daftar Kontak Darurat</string>
+    <string name="text_settings">Pengaturan Aplikasi</string>
 </resources>

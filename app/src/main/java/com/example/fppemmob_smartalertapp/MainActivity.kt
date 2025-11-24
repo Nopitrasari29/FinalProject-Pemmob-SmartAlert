@@ -1,45 +1,27 @@
 package com.example.fppemmob_smartalertapp
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-/**
- * MainActivity adalah layar utama aplikasi yang pertama kali muncul.
- * Tanggung jawabnya adalah menampilkan UI utama dan menangani interaksi awal pengguna.
- */
 class MainActivity : AppCompatActivity() {
-
-    /**
-     * Fungsi onCreate dipanggil saat Activity pertama kali dibuat.
-     * Di sinilah kita menghubungkan layout XML dengan kode Kotlin dan
-     * menyiapkan listener untuk tombol.
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Menghubungkan file layout activity_main.xml ke kelas Kotlin ini
         setContentView(R.layout.activity_main)
 
-        // --- Logika untuk Tombol Pengaturan ---
+        // 1. Temukan NavHostFragment
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
-        // 1. Mencari tombol di file layout berdasarkan ID yang sudah kita tentukan.
-        //    Kita menyimpannya dalam sebuah variabel bernama settingsButton.
-        val settingsButton: Button = findViewById(R.id.settings_button)
+        // 2. Dapatkan NavController
+        val navController = navHostFragment.navController
 
-        // 2. Menambahkan "pendengar" (listener) pada tombol tersebut.
-        //    Blok kode di dalam { } akan dijalankan setiap kali tombol ini diklik.
-        settingsButton.setOnClickListener {
-            // 3. Membuat "Intent", yaitu sebuah permintaan untuk melakukan sesuatu.
-            //    Dalam kasus ini, permintaannya adalah untuk memulai (pindah ke) SettingsActivity.
-            val intent = Intent(this, SettingsActivity::class.java)
+        // 3. Temukan BottomNavigationView
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-            // 4. Menjalankan Intent tersebut, yang akan memicu perpindahan layar.
-            startActivity(intent)
-        }
-
-        // --- Batas Logika Tombol Pengaturan ---
-
-        // (Nantinya, logika untuk tombol panik dan komponen lain akan ditambahkan di sini)
+        // 4. Hubungkan BottomNavigationView dengan NavController.
+        bottomNavigationView.setupWithNavController(navController)
     }
 }
