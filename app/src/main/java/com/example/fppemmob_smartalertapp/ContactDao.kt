@@ -1,8 +1,5 @@
 package com.example.fppemmob_smartalertapp
 
-interface ContactDao {
-}package com.example.fppemmob_smartalertapp
-
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
