@@ -85,6 +85,10 @@ dependencies {
     kapt(libs.androidx.room.compiler)
     // Ekstensi Kotlin (KTX) untuk Room, memberikan dukungan untuk Coroutines (Flow, suspend function)
     implementation(libs.androidx.room.ktx)
+    // Lifecycle Components (ViewModel, LiveData)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
+    implementation("androidx.activity:activity-ktx:1.9.0")
 
 
     //====================================================================
@@ -97,3 +101,4 @@ dependencies {
     // Library untuk UI testing di Android
     androidTestImplementation(libs.androidx.espresso.core)
 }
+
