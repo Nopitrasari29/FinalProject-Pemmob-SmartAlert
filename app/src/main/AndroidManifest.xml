@@ -5,31 +5,16 @@
     <!-- ============================================== -->
     <!-- IZIN (PERMISSIONS)                             -->
     <!-- ============================================== -->
-
-    <!-- Izin Dasar & Jaringan -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
-    <!-- Izin Lokasi (Untuk LocationManager & Service) -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!-- Izin Kamera (Untuk CameraManager) -->
     <uses-permission android:name="android.permission.CAMERA" />
-
-    <!-- Izin SMS (Untuk Output Engineer) -->
     <uses-permission android:name="android.permission.SEND_SMS" />
-
-    <!-- Izin Audio (Opsional/Future Feature) -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
-    <!-- Izin Foreground Service (Agar sensor tetap hidup di background) -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <!-- Diperlukan untuk Android 13+ untuk menampilkan notifikasi service -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <!-- Diperlukan untuk Android 14+ jika service menggunakan lokasi -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
-
 
     <!-- ============================================== -->
     <!-- APLIKASI                                       -->
@@ -46,15 +31,19 @@
         android:theme="@style/Theme.Fppemmobsmartalertapp"
         tools:targetApi="31">
 
-        <!-- Konfigurasi Google Maps API Key -->
+        <!-- API Key Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="MASUKKAN_API_KEY_ANDA_DISINI" />
 
-        <!-- Activity Utama -->
+        <!--
+             1. SPLASH ACTIVITY
+             Ini sekarang menjadi LAUNCHER (Halaman yang pertama kali muncul)
+        -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Fppemmobsmartalertapp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -62,11 +51,19 @@
         </activity>
 
         <!--
-            SERVICE: SensorService
-            Service ini berjalan di background untuk mendeteksi guncangan.
-            exported="false" berarti hanya aplikasi kita yang bisa menjalankannya.
-            foregroundServiceType="location" karena kita mengakses lokasi/sensor terkait keamanan.
+             2. MAIN ACTIVITY
+             Launcher-nya sudah dipindah ke Splash, jadi di sini dihapus.
         -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- 3. SETTINGS ACTIVITY -->
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+
+        <!-- 4. SENSOR SERVICE -->
         <service
             android:name=".SensorService"
             android:enabled="true"
