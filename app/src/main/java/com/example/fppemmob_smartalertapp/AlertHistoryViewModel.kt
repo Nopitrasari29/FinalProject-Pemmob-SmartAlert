@@ -9,21 +9,17 @@ import kotlinx.coroutines.launch
 
 class AlertHistoryViewModel(private val repository: AlertHistoryRepository) : ViewModel() {
 
-    // Data yang akan diamati oleh UI (HistoryFragment)
     val allHistory: LiveData<List<AlertHistoryEntity>> = repository.allHistory.asLiveData()
 
-    // Fungsi untuk menyimpan riwayat (dipanggil saat SOS selesai dikirim)
     fun insert(history: AlertHistoryEntity) = viewModelScope.launch {
         repository.insert(history)
     }
 
-    // Fungsi untuk menghapus riwayat
     fun clearAll() = viewModelScope.launch {
         repository.clearAll()
     }
 }
 
-// Factory untuk membuat ViewModel ini
 class AlertHistoryViewModelFactory(private val repository: AlertHistoryRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AlertHistoryViewModel::class.java)) {
