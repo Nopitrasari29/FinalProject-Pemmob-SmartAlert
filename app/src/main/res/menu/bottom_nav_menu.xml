@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- 1. HOME / LOCATION (Wajib Paling Atas) -->
     <item
         android:id="@+id/locationFragment"
         android:icon="@drawable/ic_nav_home"
         android:title="Home" />
 
+    <!-- 2. SAFETY / SOS -->
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_nav_safety"
         android:title="Safety" />
 
+    <!-- 3. CONTACTS -->
     <item
         android:id="@+id/contactsFragment"
         android:icon="@drawable/ic_nav_contacts"
         android:title="Contacts" />
 
+    <!-- 4. SETTINGS -->
     <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_nav_settings"
