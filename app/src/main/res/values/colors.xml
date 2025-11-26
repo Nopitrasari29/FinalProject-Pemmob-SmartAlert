@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="brand_purple">#6200EE</color>
-    <color name="brand_purple_dark">#3700B3</color>
-    <color name="brand_purple_light">#BB86FC</color>
-    <color name="brand_accent">#03DAC5</color>
+    <!-- Warna Bawaan (Tetap pertahankan black/white standar jika perlu) -->
+    <color name="black_standard">#FF000000</color>
+    <color name="white_standard">#FFFFFFFF</color>
 
-    <color name="background_light">#F5F5F5</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="gray_text">#757575</color>
-    <color name="gray_icon">#9E9E9E</color>
+    <!-- ======================================= -->
+    <!-- SMARTALERT PALETTE (Sesuai Mockup)      -->
+    <!-- ======================================= -->
 
-    <color name="status_active_green">#4CAF50</color>
-    <color name="status_alert_red">#F44336</color>
+    <!-- Feldgrau (Hijau Tentara Pudar) - Kemungkinan untuk Tombol/Aksen -->
+    <color name="feldgrau">#436A4D</color>
+
+    <!-- Outer Space (Hijau Gelap Kebiruan) - Kemungkinan untuk Text Header/Icon Aktif -->
+    <color name="outer_space">#3C514C</color>
+
+    <!-- Dark Electric Blue (Biru Keabuan Gelap) -->
+    <color name="dark_electric_blue">#496F7C</color>
+
+    <!-- Dark Sky Blue (Biru Langit Pudar) - Kemungkinan untuk aksen secondary -->
+    <color name="dark_sky_blue">#95B9CF</color>
+
+    <!-- Black (Hitam Pekat sesuai Mockup) - Untuk Teks Utama -->
+    <color name="black_custom">#000000</color>
+
+    <!-- Grey (Abu-abu Gelap) - Untuk Teks Sekunder/Subjudul -->
+    <color name="grey_custom">#4E4E4E</color>
+
+    <!-- White (Putih Tulang/Off White) - Untuk Card Background -->
+    <color name="white_custom">#F7F7F8</color>
+
+    <!-- Lavender Gray (Ungu Muda Pudar) - WARNA BACKGROUND UTAMA APLIKASI -->
+    <color name="lavender_gray">#C8C4D3</color>
+
 </resources>
