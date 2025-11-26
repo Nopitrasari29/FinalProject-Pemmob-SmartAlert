@@ -8,4 +8,6 @@
     <string name="text_home">Status Sistem: SIAGA</string>
     <string name="text_contacts">Daftar Kontak Darurat</string>
     <string name="text_settings">Pengaturan Aplikasi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lavender_gray"
+    android:padding="24dp"
+    tools:context=".AlertProcessFragment">
+
+    <!-- HEADER: Back Button (Pakai ic_back.png) -->
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_back"
+        app:tint="@color/outer_space"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_header_sos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_header_sos" />
+
+    <!-- Title SOS -->
+    <TextView
+        android:id="@+id/tv_header_sos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SOS"
+        android:textColor="@color/outer_space"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Settings Icon -->
+    <ImageView
+        android:id="@+id/btn_settings"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_nav_settings"
+        app:tint="@color/outer_space"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_header_sos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_header_sos" />
+
+    <!-- Judul Halaman -->
+    <TextView
+        android:id="@+id/tv_title_process"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Processing Assistance"
+        android:textColor="@color/outer_space"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_header_sos" />
+
+    <!-- IKON MEGAPHONE BESAR (Pakai ic_megaphone.png) -->
+    <ImageView
+        android:id="@+id/img_megaphone"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_megaphone"
+        app:tint="@color/outer_space"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_process" />
+
+    <!-- KARTU STATUS (Kotak Putih) -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:cardBackgroundColor="@color/white_custom"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_megaphone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="32dp">
+
+            <!-- Status 1: Mencari Lokasi (Pakai ic_status_check.png) -->
+            <TextView
+                android:id="@+id/status_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:text="Looking for a location..."
+                android:textColor="@color/success_green"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_status_check"
+                app:drawableTint="@color/success_green" />
+
+            <!-- Status 2: Mengirim SMS (Pakai ic_status_waiting.png) -->
+            <TextView
+                android:id="@+id/status_sms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:text="Sending SMS..."
+                android:textColor="@color/dark_electric_blue"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_status_waiting"
+                app:drawableTint="@color/dark_electric_blue" />
+
+            <!-- Status 3: Notifikasi Kontak (Pakai ic_status_waiting.png) -->
+            <TextView
+                android:id="@+id/status_notify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:text="Notify contacts..."
+                android:textColor="@color/dark_electric_blue"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_status_waiting"
+                app:drawableTint="@color/dark_electric_blue" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

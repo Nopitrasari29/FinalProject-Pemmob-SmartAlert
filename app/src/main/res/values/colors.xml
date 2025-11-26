@@ -15,6 +15,7 @@
     <color name="lavender_gray">#C8C4D3</color>
     <color name="sos_red">#FF4B4B</color>
     <color name="sos_red_pressed">#D32F2F</color>
+    <color name="success_green">#2ECC71</color>
 
     <!-- PEMBUNGKAM ERROR (Alias warna lama ke warna baru) -->
     <color name="brand_purple">@color/feldgrau</color>
