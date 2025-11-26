@@ -9,78 +9,77 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
- * MainActivity adalah satu-satunya Activity di aplikasi ini.
- * Ia berfungsi sebagai "host" atau "wadah" untuk semua halaman (Fragment).
- * Ia juga bertanggung jawab atas komponen UI global seperti Bottom Navigation
- * dan logika global seperti deteksi guncangan (ShakeDetector).
+ * MainActivity: Wadah utama aplikasi yang mengelola Navigasi, Menu Bawah, dan Sensor Guncangan.
  */
 class MainActivity : AppCompatActivity() {
 
-    // --- TAMBAHAN BARU ---
-    // Mendeklarasikan variabel untuk ShakeDetector.
-    // 'private lateinit var' berarti kita berjanji akan menginisialisasi variabel ini nanti.
+    // Variabel untuk sensor guncangan (ShakeDetector)
     private lateinit var shakeDetector: ShakeDetector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // --- Kode Navigasi yang Sudah Ada (Sangat Baik!) ---
-        // 1. Temukan NavHostFragment, yang merupakan "wadah" untuk semua Fragment.
+        // ============================================================
+        // 1. SETUP NAVIGASI & BOTTOM BAR
+        // ============================================================
+
+        // Menemukan NavHostFragment (Area ganti-ganti halaman)
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
-        // 2. Dapatkan NavController dari NavHostFragment. NavController adalah "otak" navigasi.
+        // Mengambil NavController (Pengontrol navigasi)
         val navController = navHostFragment.navController
 
-        // 3. Temukan BottomNavigationView di layout.
+        // Menemukan BottomNavigationView (Menu Bawah)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        // 4. Hubungkan BottomNavigationView dengan NavController.
-        //    Ini secara otomatis akan menangani klik pada item menu navigasi.
+        // Menghubungkan Bottom Bar dengan Navigasi
+        // Ini membuat klik pada ikon menu otomatis pindah ke halaman yang sesuai
         bottomNavigationView.setupWithNavController(navController)
-        // --- Akhir Kode Navigasi ---
 
+        // CATATAN:
+        // Sesuai mockup, kita TIDAK menyembunyikan Bottom Bar di halaman manapun.
+        // Jadi menu Home, Safety, Contacts, Settings akan selalu terlihat.
 
-        // --- TAMBAHAN BARU: Inisialisasi ShakeDetector ---
-        // Kita membuat instance dari ShakeDetector.
-        // 'this' merujuk ke MainActivity sebagai Context.
-        // Blok kode di dalam { } adalah lambda function yang akan dijalankan setiap kali
-        // guncangan terdeteksi (ini adalah parameter onShake).
+        // ============================================================
+        // 2. SETUP SENSOR GUNCANGAN (SHAKE DETECTOR)
+        // ============================================================
+
         shakeDetector = ShakeDetector(this) {
-            // Kode di dalam blok ini akan dijalankan setiap kali HP diguncang keras.
-
-            // Untuk sekarang, kita hanya menampilkan pesan Toast dan Log untuk pengujian.
+            // Kode ini berjalan otomatis saat HP diguncang keras
             Log.d("ShakeDetector", "GUNCANGAN TERDETEKSI DI MAINACTIVITY!")
-            Toast.makeText(this, "Guncangan Terdeteksi!", Toast.LENGTH_SHORT).show()
 
-            // DI MASA DEPAN: Kode ini akan diganti dengan logika untuk memulai alur darurat.
-            // Contoh: navController.navigate(R.id.action_global_alertPage)
-            // Ini akan memindahkan pengguna ke halaman Alert Page (countdown 5s).
+            // Tampilkan pesan feedback ke user
+            Toast.makeText(this, "Shake Detected! Initiating SOS...", Toast.LENGTH_SHORT).show()
+
+            // Opsi Tambahan: Jika ingin otomatis pindah ke halaman Alert saat diguncang
+            // Buka komentar di bawah ini jika ID action di nav_graph.xml sudah benar:
+            /*
+            try {
+                navController.navigate(R.id.alertFragment)
+            } catch (e: Exception) {
+                Log.e("MainActivity", "Navigasi otomatis gagal: ${e.message}")
+            }
+            */
         }
     }
 
-    /**
-     * onResume() adalah bagian dari siklus hidup Activity.
-     * Fungsi ini dipanggil setiap kali aplikasi kembali ke layar (menjadi aktif).
-     * Ini adalah tempat terbaik untuk mulai mendengarkan sensor.
-     */
+    // ============================================================
+    // 3. SIKLUS HIDUP APLIKASI (LIFECYCLE)
+    // ============================================================
+
     override fun onResume() {
         super.onResume()
-        // Memulai listener sensor.
+        // Aktifkan sensor saat aplikasi sedang dibuka/dilihat user
         shakeDetector.start()
         Log.d("ShakeDetector", "Shake detector started.")
     }
 
-    /**
-     * onPause() adalah bagian dari siklus hidup Activity.
-     * Fungsi ini dipanggil saat aplikasi tidak lagi di layar (misalnya, pengguna menekan
-     * tombol home atau pindah ke aplikasi lain).
-     * Sangat PENTING untuk berhenti mendengarkan sensor di sini untuk menghemat baterai.
-     */
     override fun onPause() {
         super.onPause()
-        // Menghentikan listener sensor.
+        // Matikan sensor saat aplikasi diminimize atau layar mati untuk hemat baterai.
+        // (Nanti tugas monitoring background akan dihandle oleh Service, bukan Activity ini)
         shakeDetector.stop()
         Log.d("ShakeDetector", "Shake detector stopped.")
     }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LocationFragment">
+
+    <!-- 1. PETA (Layer Paling Belakang - Full Screen) -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 2. HEADER (Locations & Settings) -->
+
+    <!-- Judul "Locations" (Bentuk Pill/Lonjong) -->
+    <TextView
+        android:id="@+id/tv_locations_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/bg_white_rounded"
+        android:backgroundTint="#B3C8C4D3"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="8dp"
+        android:text="Locations"
+        android:textColor="@color/outer_space"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:elevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Note: #B3C8C4D3 adalah warna Lavender dengan transparansi (biar agak tembus pandang dikit) -->
+
+    <!-- Tombol Settings (Bulat Kecil di Kanan) -->
+    <ImageView
+        android:id="@+id/btn_settings_map"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_white_rounded"
+        android:backgroundTint="#B3C8C4D3"
+        android:padding="10dp"
+        android:src="@drawable/ic_nav_settings"
+        app:tint="@color/outer_space"
+        android:elevation="6dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_locations_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_locations_header" />
+
+    <!-- 3. BOTTOM SHEET (Daftar Kontak) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:background="@drawable/bg_bottom_sheet_rounded"
+        android:backgroundTint="#D9C8C4D3"
+        android:padding="24dp"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <!-- Note: #D9C8C4D3 adalah Lavender agak tebal -->
+
+        <!-- Garis Handle Kecil -->
+        <View
+            android:id="@+id/view_handle"
+            android:layout_width="50dp"
+            android:layout_height="4dp"
+            android:background="@color/outer_space"
+            android:alpha="0.6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Judul "Circles" -->
+        <TextView
+            android:id="@+id/tv_circles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Circles"
+            android:textColor="@color/outer_space"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_handle" />
+
+        <!-- RecyclerView List Kontak -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_contacts_map"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_circles"
+            tools:listitem="@layout/item_contact_map"
+            tools:itemCount="3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

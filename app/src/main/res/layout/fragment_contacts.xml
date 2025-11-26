@@ -1,65 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/lavender_gray"
+    android:padding="24dp"
+    tools:context=".ContactsFragment">
 
+    <!-- Header -->
     <TextView
-        android:id="@+id/tvHeaderContacts"
+        android:id="@+id/tv_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kontak Darurat"
-        android:textColor="@color/brand_purple_dark"
+        android:text="Emergency Contacts"
+        android:textColor="@color/outer_space"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/layoutEmptyState"
+    <ImageView
+        android:id="@+id/btn_settings"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_nav_settings"
+        app:tint="@color/outer_space"
+        app:layout_constraintBottom_toBottomOf="@id/tv_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_header" />
+
+    <!-- List Kontak -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_contacts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/btnAddContact"
-        app:layout_constraintTop_toBottomOf="@id/tvHeaderContacts">
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_nav_contacts"
-            app:tint="@color/brand_purple_light" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Belum Ada Kontak"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="Tambahkan orang terpercaya untuk menerima notifikasi darurat Anda."
-            android:textColor="@color/gray_text" />
-    </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/btnAddContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/brand_purple"
-        android:text="Tambah Kontak"
-        android:textColor="@color/white"
-        app:icon="@drawable/ic_add_person"
-        app:iconTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_contact"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        tools:listitem="@layout/item_contact"
+        tools:itemCount="3"/>
+
+    <!-- Tombol Tambah Kontak -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_contact"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_white_rounded"
+        android:backgroundTint="@color/white_custom"
+        android:text="+ Add New Contact"
+        android:textAllCaps="false"
+        android:textColor="@color/outer_space"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

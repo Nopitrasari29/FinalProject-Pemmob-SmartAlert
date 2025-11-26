@@ -3,7 +3,13 @@
   <component name="MaterialThemeProjectNewConfig">
     <option name="metadata">
       <MTProjectMetadataState>
+feature/sensor-camera-manager
         <option name="userId" value="346cedbd:19abebe4551:-7f52" />
+
+        <option name="migrated" value="true" />
+        <option name="pristineConfig" value="false" />
+        <option name="userId" value="-39df1bc:19abdf2d03c:-7ffe" />
+ main
       </MTProjectMetadataState>
     </option>
   </component>

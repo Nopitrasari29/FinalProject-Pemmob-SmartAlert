@@ -1,8 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Fppemmobsmartalertapp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Warna Utama (Bisa disesuaikan nanti) -->
+        <item name="colorPrimary">@color/feldgrau</item>
+        <item name="colorOnPrimary">@color/white_custom</item>
+        <item name="colorSecondary">@color/outer_space</item>
+        <item name="colorOnSecondary">@color/white_custom</item>
+
+        <!-- Mengatur Background Global menjadi Lavender Gray -->
+        <item name="android:colorBackground">@color/lavender_gray</item>
+        <item name="android:windowBackground">@color/lavender_gray</item>
+
+        <!-- Mengatur Warna Status Bar (Sinyal/Baterai di atas) -->
+        <item name="android:statusBarColor">@color/lavender_gray</item>
+        <item name="android:windowLightStatusBar">true</item> <!-- Icon status bar jadi hitam -->
     </style>
 
     <style name="Theme.Fppemmobsmartalertapp" parent="Base.Theme.Fppemmobsmartalertapp" />
