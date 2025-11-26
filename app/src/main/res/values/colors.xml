@@ -14,6 +14,9 @@
     <!-- Outer Space (Hijau Gelap Kebiruan) - Kemungkinan untuk Text Header/Icon Aktif -->
     <color name="outer_space">#3C514C</color>
 
+    <color name="sos_red">#FF4B4B</color>
+    <color name="sos_red_pressed">#D32F2F</color>
+
     <!-- Dark Electric Blue (Biru Keabuan Gelap) -->
     <color name="dark_electric_blue">#496F7C</color>
 
