@@ -90,6 +90,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
     implementation("androidx.activity:activity-ktx:1.9.0")
 
+    // Google Play Services untuk Fused Location Provider (GPS yang efisien)
+    implementation("com.google.android.gms:play-services-location:21.3.0") // <-- KESALAHAN SUDAH DIPERBAIKI DI SINI
+
 
     //====================================================================
     // TESTING DEPENDENCIES (Untuk Pengujian Kode)
@@ -101,4 +104,3 @@ dependencies {
     // Library untuk UI testing di Android
     androidTestImplementation(libs.androidx.espresso.core)
 }
-
