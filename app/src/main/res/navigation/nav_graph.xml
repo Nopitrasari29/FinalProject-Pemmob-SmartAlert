@@ -5,12 +5,22 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/locationFragment">
 
-    <!-- 1. HOME (Peta) -->
+    <!-- ================================================= -->
+    <!-- 4 MENU UTAMA (BOTTOM NAVIGATION)                  -->
+    <!-- ID-nya harus sama dengan di bottom_nav_menu.xml   -->
+    <!-- ================================================= -->
+
+    <!-- 1. HOME (Peta Location) -->
     <fragment
         android:id="@+id/locationFragment"
         android:name="com.example.fppemmob_smartalertapp.LocationFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_location" />
+        tools:layout="@layout/fragment_location">
+        <!-- Bisa ke Settings dari sini -->
+        <action
+            android:id="@+id/action_locationFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
 
     <!-- 2. SAFETY (Tombol SOS Merah) -->
     <fragment
@@ -19,44 +29,50 @@
         android:label="Safety"
         tools:layout="@layout/fragment_home">
 
-        <!-- Jalur ke Halaman Pengaturan -->
-        <action
-            android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-
-        <!-- Jalur ke Halaman Countdown Alert -->
+        <!-- Klik Tombol SOS -> Masuk ke Timer -->
         <action
             android:id="@+id/action_homeFragment_to_alertFragment"
             app:destination="@id/alertFragment" />
+
+        <!-- Klik Icon Gear -> Masuk Settings -->
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
-    <!-- 3. CONTACTS -->
+    <!-- 3. CONTACTS (Daftar Kontak) -->
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.example.fppemmob_smartalertapp.ContactsFragment"
         android:label="Contacts"
         tools:layout="@layout/fragment_contacts" />
 
-    <!-- 4. SETTINGS -->
+    <!-- 4. SETTINGS (Pengaturan) -->
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.fppemmob_smartalertapp.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
 
-    <!-- 5. ALERT PAGE (Timer 5 Detik) -->
+
+    <!-- ================================================= -->
+    <!-- ALUR DARURAT (SOS FLOW)                           -->
+    <!-- ================================================= -->
+
+    <!-- 5. ALERT PAGE (Countdown Timer 5 Detik) -->
     <fragment
         android:id="@+id/alertFragment"
         android:name="com.example.fppemmob_smartalertapp.AlertFragment"
         android:label="Alert"
         tools:layout="@layout/fragment_alert">
 
-        <!-- Jalur ke Halaman Loading Process (Saat waktu habis) -->
+        <!-- Waktu Habis -> Masuk ke Loading Process -->
+        <!-- popUpTo locationFragment: Supaya kalau di-back gak balik ke timer lagi -->
         <action
             android:id="@+id/action_alertFragment_to_alertProcessFragment"
             app:destination="@id/alertProcessFragment"
-            app:popUpTo="@id/locationFragment" />
-        <!-- popUpTo locationFragment: Biar kalau di-back langsung ke peta -->
+            app:popUpTo="@id/locationFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <!-- 6. ALERT PROCESS PAGE (Loading Hijau) -->
@@ -64,6 +80,45 @@
         android:id="@+id/alertProcessFragment"
         android:name="com.example.fppemmob_smartalertapp.AlertProcessFragment"
         android:label="Processing"
-        tools:layout="@layout/fragment_alert_process" />
+        tools:layout="@layout/fragment_alert_process">
+
+        <!-- Proses Selesai -> Masuk ke Message History (Bukti Terkirim) -->
+        <!-- popUpTo locationFragment: Supaya kalau di-back langsung ke Home, gak balik ke loading -->
+        <action
+            android:id="@+id/action_alertProcessFragment_to_messageHistoryFragment"
+            app:destination="@id/messageHistoryFragment"
+            app:popUpTo="@id/locationFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+
+    <!-- ================================================= -->
+    <!-- HISTORY & DETAIL                                  -->
+    <!-- ================================================= -->
+
+    <!-- 7. MESSAGE HISTORY (List Riwayat) -->
+    <fragment
+        android:id="@+id/messageHistoryFragment"
+        android:name="com.example.fppemmob_smartalertapp.MessageHistoryFragment"
+        android:label="Messages"
+        tools:layout="@layout/fragment_message_history">
+
+        <!-- Klik Item -> Lihat Detail Pesan -->
+        <action
+            android:id="@+id/action_messageHistoryFragment_to_messageDetailFragment"
+            app:destination="@id/messageDetailFragment" />
+
+        <!-- Klik Settings dari halaman ini -->
+        <action
+            android:id="@+id/action_messageHistoryFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+
+    <!-- 8. MESSAGE DETAIL (Isi Pesan Lengkap) -->
+    <fragment
+        android:id="@+id/messageDetailFragment"
+        android:name="com.example.fppemmob_smartalertapp.MessageDetailFragment"
+        android:label="Message Detail"
+        tools:layout="@layout/fragment_message_detail" />
 
 </navigation>
