@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment"> <!-- Start di SOS (Safety) -->
+    app:startDestination="@id/locationFragment">
 
     <!-- 1. Tab Home (Peta) -->
     <fragment
@@ -22,9 +22,14 @@
         <action
             android:id="@+id/action_homeFragment_to_alertFragment"
             app:destination="@id/alertFragment" />
+
+        <!-- (Action ke Settings)-->
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
-    <!-- 3. Tab Contacts -->
+<!-- 3. Tab Contacts -->
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.example.fppemmob_smartalertapp.ContactsFragment"

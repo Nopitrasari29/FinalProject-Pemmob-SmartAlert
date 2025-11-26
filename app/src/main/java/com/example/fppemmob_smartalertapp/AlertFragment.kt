@@ -25,7 +25,7 @@ class AlertFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val progressBar: ProgressBar = view.findViewById(R.id.progressBar)
+        val progressBar: ProgressBar = view.findViewById(R.id.progress_bar_timer)
         val tvCountdown: TextView = view.findViewById(R.id.tv_countdown)
         val btnCancel: Button = view.findViewById(R.id.btn_cancel)
 

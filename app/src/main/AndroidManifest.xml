@@ -34,7 +34,7 @@
         <!-- API Key Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="MASUKKAN_API_KEY_ANDA_DISINI" />
+            android:value="AIzaSyAY4GyGLrkT9OzzB5MNaEkznyctBaICsXA" />
 
         <!--
              1. SPLASH ACTIVITY
