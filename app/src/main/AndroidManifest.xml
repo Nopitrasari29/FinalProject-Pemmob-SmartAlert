@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <!-- Izin untuk mengirim SMS (akan dibutuhkan oleh Output Engineer) -->
     <uses-permission android:name="android.permission.SEND_SMS" />
     <!-- Izin untuk merekam audio (jika fitur Speech-to-Text diimplementasikan) -->
