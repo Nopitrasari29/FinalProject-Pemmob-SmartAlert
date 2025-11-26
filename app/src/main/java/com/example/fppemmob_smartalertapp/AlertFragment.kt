@@ -5,9 +5,9 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
@@ -44,19 +44,22 @@ class AlertFragment : Fragment() {
             override fun onFinish() {
                 tvCountdown.text = "0s"
                 progressBar.progress = 0
-                // TODO: Pindah ke halaman Alert Process (Nanti)
+
+                // --- LOGIKA PINDAH HALAMAN ---
+                // Saat waktu habis, pindah ke AlertProcessFragment
+                findNavController().navigate(R.id.action_alertFragment_to_alertProcessFragment)
             }
         }.start()
 
         // Tombol Cancel
         btnCancel.setOnClickListener {
             timer?.cancel()
-            findNavController().popBackStack() // Balik ke Home
+            findNavController().popBackStack() // Balik ke halaman sebelumnya
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        timer?.cancel() // Matikan timer kalau keluar halaman
+        timer?.cancel() // Matikan timer kalau user keluar
     }
 }

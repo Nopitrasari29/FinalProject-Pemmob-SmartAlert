@@ -5,49 +5,65 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/locationFragment">
 
-    <!-- 1. Tab Home (Peta) -->
+    <!-- 1. HOME (Peta) -->
     <fragment
         android:id="@+id/locationFragment"
         android:name="com.example.fppemmob_smartalertapp.LocationFragment"
         android:label="Home"
         tools:layout="@layout/fragment_location" />
 
-    <!-- 2. Tab Safety (SOS Button - Yang barusan kamu buat) -->
+    <!-- 2. SAFETY (Tombol SOS Merah) -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.fppemmob_smartalertapp.HomeFragment"
         android:label="Safety"
-        tools:layout="@layout/fragment_home" >
-        <!-- Action ke Alert Page -->
-        <action
-            android:id="@+id/action_homeFragment_to_alertFragment"
-            app:destination="@id/alertFragment" />
+        tools:layout="@layout/fragment_home">
 
-        <!-- (Action ke Settings)-->
+        <!-- Jalur ke Halaman Pengaturan -->
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+
+        <!-- Jalur ke Halaman Countdown Alert -->
+        <action
+            android:id="@+id/action_homeFragment_to_alertFragment"
+            app:destination="@id/alertFragment" />
     </fragment>
 
-<!-- 3. Tab Contacts -->
+    <!-- 3. CONTACTS -->
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.example.fppemmob_smartalertapp.ContactsFragment"
         android:label="Contacts"
         tools:layout="@layout/fragment_contacts" />
 
-    <!-- 4. Tab Settings -->
+    <!-- 4. SETTINGS -->
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.fppemmob_smartalertapp.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
 
-    <!-- Halaman Lain (Alert, Splash, dll) biarkan saja di bawah -->
+    <!-- 5. ALERT PAGE (Timer 5 Detik) -->
     <fragment
         android:id="@+id/alertFragment"
         android:name="com.example.fppemmob_smartalertapp.AlertFragment"
         android:label="Alert"
-        tools:layout="@layout/fragment_alert" />
+        tools:layout="@layout/fragment_alert">
+
+        <!-- Jalur ke Halaman Loading Process (Saat waktu habis) -->
+        <action
+            android:id="@+id/action_alertFragment_to_alertProcessFragment"
+            app:destination="@id/alertProcessFragment"
+            app:popUpTo="@id/locationFragment" />
+        <!-- popUpTo locationFragment: Biar kalau di-back langsung ke peta -->
+    </fragment>
+
+    <!-- 6. ALERT PROCESS PAGE (Loading Hijau) -->
+    <fragment
+        android:id="@+id/alertProcessFragment"
+        android:name="com.example.fppemmob_smartalertapp.AlertProcessFragment"
+        android:label="Processing"
+        tools:layout="@layout/fragment_alert_process" />
 
 </navigation>
