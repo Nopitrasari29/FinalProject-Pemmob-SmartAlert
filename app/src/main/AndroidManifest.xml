@@ -2,17 +2,38 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Izin yang dibutuhkan aplikasi -->
+    <!-- ============================================== -->
+    <!-- IZIN (PERMISSIONS)                             -->
+    <!-- ============================================== -->
+
+    <!-- Izin Dasar & Jaringan -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Izin Lokasi (Untuk LocationManager & Service) -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- Izin untuk mengirim SMS (akan dibutuhkan oleh Output Engineer) -->
+
+    <!-- Izin Kamera (Untuk CameraManager) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Izin SMS (Untuk Output Engineer) -->
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <!-- Izin untuk merekam audio (jika fitur Speech-to-Text diimplementasikan) -->
+
+    <!-- Izin Audio (Opsional/Future Feature) -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <!-- Izin Foreground Service (Agar sensor tetap hidup di background) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Diperlukan untuk Android 13+ untuk menampilkan notifikasi service -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Diperlukan untuk Android 14+ jika service menggunakan lokasi -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
 
+
+    <!-- ============================================== -->
+    <!-- APLIKASI                                       -->
+    <!-- ============================================== -->
     <application
         android:name=".ContactsApplication"
         android:allowBackup="true"
@@ -25,32 +46,33 @@
         android:theme="@style/Theme.Fppemmobsmartalertapp"
         tools:targetApi="31">
 
-        <!--
-         Metadata untuk Google Maps API Key.
-         PENTING: Ganti "MASUKKAN_API_KEY_ANDA_DISINI" dengan API Key yang valid.
-         -->
+        <!-- Konfigurasi Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="MASUKKAN_API_KEY_ANDA_DISINI" />
 
-        <!--
-         Mendefinisikan MainActivity sebagai layar utama (entry point) aplikasi.
-         -->
+        <!-- Activity Utama -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <!--
-         (Jika ada Activity lain seperti SettingsActivity, daftarkan juga di sini)
-         Contoh:
-         <activity android:name=".SettingsActivity" />
-         -->
+            SERVICE: SensorService
+            Service ini berjalan di background untuk mendeteksi guncangan.
+            exported="false" berarti hanya aplikasi kita yang bisa menjalankannya.
+            foregroundServiceType="location" karena kita mengakses lokasi/sensor terkait keamanan.
+        -->
+        <service
+            android:name=".SensorService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
     </application>
 
 </manifest>
