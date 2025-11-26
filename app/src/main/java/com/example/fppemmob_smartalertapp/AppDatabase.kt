@@ -5,13 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-// PENTING: Tambahkan AlertHistoryEntity ke daftar entities DAN ubah version menjadi 2
+// UPDATE: Version naik jadi 2, dan tambahkan AlertHistoryEntity
 @Database(entities = [ContactEntity::class, AlertHistoryEntity::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun contactDao(): ContactDao
 
-    // --- TAMBAHAN BARU ---
+    // UPDATE: Tambahkan akses ke DAO baru
     abstract fun alertHistoryDao(): AlertHistoryDao
 
     companion object {
@@ -25,8 +25,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "smartalert_database"
                 )
-                    // PENTING: Tambahkan ini agar aplikasi tidak crash saat versi database berubah
-                    // Ini akan menghapus data lama jika skema berubah (aman untuk tahap dev)
+                    // PENTING: Agar tidak crash saat update versi database
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance

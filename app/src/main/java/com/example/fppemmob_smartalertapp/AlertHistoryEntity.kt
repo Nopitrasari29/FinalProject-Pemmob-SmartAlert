@@ -8,8 +8,8 @@ data class AlertHistoryEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
-    val timestamp: Long, // Waktu kejadian (disimpan dalam milidetik)
-    val location: String, // Koordinat atau alamat singkat (misal: "-6.200, 106.816")
-    val aiAnalysisResult: String, // Hasil analisis AI (misal: "Mobil, Malam Hari")
-    val status: String = "Terkirim" // Status pesan (Terkirim/Gagal)
+    val timestamp: Long, // Waktu kejadian (milidetik)
+    val location: String, // Alamat atau Koordinat
+    val aiAnalysisResult: String, // Hasil analisis AI
+    val status: String = "Terkirim" // Status pesan
 )
