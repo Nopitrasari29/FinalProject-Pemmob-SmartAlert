@@ -5,21 +5,22 @@ import android.app.Application
 /**
  * Custom Application class untuk SmartAlert.
  *
- * Kelas ini diinisialisasi sekali saat aplikasi pertama kali dijalankan.
- * Tujuannya adalah untuk menyediakan instance global (singleton) dari
- * Database dan Repository yang bisa diakses dari mana saja di dalam aplikasi.
- *
- * Dengan cara ini, kita memastikan hanya ada satu koneksi ke database yang dibuat,
- * yang sangat penting untuk efisiensi dan konsistensi data.
+ * Kelas ini berfungsi sebagai "Service Locator" sederhana.
+ * Ia bertanggung jawab untuk membuat satu instance (singleton) dari Database
+ * dan Repositories yang akan digunakan di seluruh aplikasi.
  */
 class ContactsApplication : Application() {
 
-    // Menggunakan 'by lazy' adalah teknik inisialisasi yang cerdas.
-    // Kode di dalam { } hanya akan dijalankan saat 'database' pertama kali diakses,
-    // bukan saat aplikasi dimulai. Ini mempercepat waktu startup aplikasi.
+    // 1. Inisialisasi Database Utama
+    // Menggunakan 'by lazy' agar database hanya dibuat saat pertama kali diakses.
     val database by lazy { AppDatabase.getDatabase(this) }
 
-    // Sama seperti database, repository juga dibuat secara lazy, dan menggunakan
-    // instance database yang sudah dibuat sebelumnya.
+    // 2. Inisialisasi Repository untuk Fitur Kontak
+    // Repository ini membutuhkan ContactDao yang diambil dari database.
     val repository by lazy { ContactRepository(database.contactDao()) }
+
+    // 3. --- TAMBAHAN BARU: Inisialisasi Repository untuk Fitur Riwayat ---
+    // Repository ini membutuhkan AlertHistoryDao yang diambil dari database.
+    // Dengan ini, ViewModel untuk history nanti bisa mengambil data dengan mudah.
+    val alertHistoryRepository by lazy { AlertHistoryRepository(database.alertHistoryDao()) }
 }
