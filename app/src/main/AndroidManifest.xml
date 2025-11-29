@@ -3,21 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- ============================================== -->
+    <!-- FITUR HARDWARE (Tambahan agar Warning hilang)  -->
+    <!-- ============================================== -->
+    <!-- Memberi tahu sistem bahwa aplikasi ini memakai kamera & telepon -->
+    <!-- required="false" artinya: Kalau HP gak punya fitur ini, aplikasi tetap boleh diinstall -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+
+    <!-- ============================================== -->
     <!-- IZIN (PERMISSIONS)                             -->
     <!-- ============================================== -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
- feature/sensor-camera-manager
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <!-- Izin untuk mengirim SMS (akan dibutuhkan oleh Output Engineer) -->
-
-    <uses-permission android:name="android.permission.CAMERA" />
- main
-    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
@@ -40,12 +43,9 @@
         <!-- API Key Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAY4GyGLrkT9OzzB5MNaEkznyctBaICsXA" />
+            android:value="AIzaSyACfUAgzyjVvBt0u2Y7nGAIlHO_wAUuhaE" />
 
-        <!--
-             1. SPLASH ACTIVITY
-             Ini sekarang menjadi LAUNCHER (Halaman yang pertama kali muncul)
-        -->
+        <!-- 1. SPLASH ACTIVITY (Halaman Awal) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -56,20 +56,12 @@
             </intent-filter>
         </activity>
 
-        <!--
-             2. MAIN ACTIVITY
-             Launcher-nya sudah dipindah ke Splash, jadi di sini dihapus.
-        -->
+        <!-- 2. MAIN ACTIVITY -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
 
-        <!-- 3. SETTINGS ACTIVITY -->
-        <activity
-            android:name=".SettingsActivity"
-            android:exported="false" />
-
-        <!-- 4. SENSOR SERVICE -->
+        <!-- 3. SENSOR SERVICE -->
         <service
             android:name=".SensorService"
             android:enabled="true"

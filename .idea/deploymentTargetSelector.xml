@@ -4,8 +4,6 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-feature/sensor-camera-manager
-
         <DropdownSelection timestamp="2025-11-26T07:50:16.608109900Z">
           <Target type="DEFAULT_BOOT">
             <handle>
@@ -14,7 +12,6 @@ feature/sensor-camera-manager
           </Target>
         </DropdownSelection>
         <DialogSelection />
- main
       </SelectionState>
     </selectionStates>
   </component>

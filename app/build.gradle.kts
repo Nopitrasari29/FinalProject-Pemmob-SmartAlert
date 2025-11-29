@@ -109,4 +109,16 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     // Library untuk UI testing di Android
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // ====================================================
+    // NETWORK & API
+    // ====================================================
+    // Retrofit: Untuk melakukan request HTTP ke Google Cloud Vision
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // GSON Converter: Mengubah JSON dari Google menjadi objek Kotlin otomatis
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // OkHttp Logging: Untuk melihat log request/response di Logcat (bantu debugging)
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 }
